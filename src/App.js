@@ -18,8 +18,8 @@ function App() {
 
   return (
     <div className="bg-yellow-100 h-full">
-      <header className="text-lg md:text-2xl font-large text-gray-900">
-        <h1>Ethical Targeting</h1>
+      <header className="text-lg md:text-2xl font-large text-gray-900 ml-4">
+        <h1 className="m-4">Ethical Targeting</h1>
       </header>
       {info ? (
         <Info user={user} setInfo={setInfo} />

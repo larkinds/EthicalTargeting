@@ -1,32 +1,27 @@
 function Form({ user, setUser, setInfo }) {
+  let localState = { ...user };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log({ name });
-    console.log({ value });
     let possibleArr = name.split('%');
 
     if (possibleArr.length > 1) {
-      let interestChanged = possibleArr[1];
       let updatedInterests = user.interests.map((interest) => {
-        if (interest === interestChanged) {
-          return interestChanged;
+        if (interest === possibleArr[1]) {
+          return value;
         }
         return interest;
       });
-      setUser({
-        ...user,
-        interest: updatedInterests,
-      });
+      localState[possibleArr[0]] = updatedInterests;
+      return;
     } else {
-      setUser({
-        ...user,
-        [name]: value,
-      });
+      localState[name] = value;
     }
   };
 
   const onSubmitForm = (event) => {
     event.preventDefault();
+    setUser(localState);
     setInfo(true);
   };
 
@@ -70,8 +65,9 @@ function Form({ user, setUser, setInfo }) {
                     className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 ring-1 sm:rounded-lg p-1"
                     type="text"
                     key={subItem}
-                    name={item}
-                    value={subItem}
+                    name={item + '%' + subItem}
+                    // using defaultValue to keep this input editable while working around React's state mgmt
+                    defaultValue={subItem}
                     onChange={(event) => handleChange(event)}
                   />
                 );
@@ -85,33 +81,12 @@ function Form({ user, setUser, setInfo }) {
                 type="text"
                 key={item}
                 name={item}
-                value={user[item]}
+                defaultValue={user[item]}
                 onChange={(event) => handleChange(event)}
               />
             </label>
           );
         })}
-        {/* <label className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <span className="text-sm font-medium text-gray-500">Name:</span>
-          <input
-            className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
-            type="text"
-            name="name"
-            value={user.name}
-            onChange={(event) => handleChange(event)}
-          />
-        </label> */}
-        {/* {user.interests.map((interest) => (
-          <label>
-            {interest}
-            <input
-              type="text"
-              name={'singleInterest%' + interest}
-              defaultValue={interest}
-              onChange={(event) => handleChange(event)}
-            />
-          </label>
-        ))} */}
       </form>
     </div>
   );

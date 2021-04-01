@@ -5,7 +5,7 @@ function Info({ user, setInfo }) {
   };
 
   return (
-    <div className="bg-white shadow overflow-hidden w-2/3 sm:rounded-lg mb-10">
+    <div className="bg-white shadow overflow-hidden w-2/3 sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-gray-900">Header</h3>
         <p className="mt-1 max-w-2xl text-sm text-gray-500">
@@ -38,7 +38,7 @@ function Info({ user, setInfo }) {
               {user[item].map((subItem) => {
                 return (
                   <p
-                    className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 float-right"
+                    className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 p-1"
                     key={subItem}
                   >
                     {subItem}
@@ -51,7 +51,7 @@ function Info({ user, setInfo }) {
               <p className="text-sm font-medium text-gray-500" key={item}>
                 {item}
               </p>
-              <p className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <p className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 p-1">
                 {user[item]}
               </p>
             </div>
