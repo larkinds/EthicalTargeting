@@ -1,29 +1,33 @@
-function Form({ user, setUser, setInfo }) {
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    console.log({ name });
-    console.log({ value });
-    let possibleArr = name.split('%');
+import TextForm from './TextForm';
+import ListForm from './ListForm';
 
-    if (possibleArr.length > 1) {
-      let interestChanged = possibleArr[1];
-      let updatedInterests = user.interests.map((interest) => {
-        if (interest === interestChanged) {
-          return interestChanged;
-        }
-        return interest;
-      });
-      setUser({
-        ...user,
-        interest: updatedInterests,
-      });
-    } else {
-      setUser({
-        ...user,
-        [name]: value,
-      });
-    }
-  };
+function Form({ user, setUser, setInfo }) {
+  const userItems = Object.keys(user);
+  //   let localUser = { ...user };
+
+  //   const handleChange = (event) => {
+  //     const { name, value } = event.target;
+  //     let possibleArr = name.split('%');
+
+  //     if (possibleArr.length > 1) {
+  //       let updatedInterests = user.interests.map((interest) => {
+  //         if (interest === possibleArr[1]) {
+  //           return value;
+  //         }
+  //         return interest;
+  //       });
+  //       localUser[possibleArr[0]] = updatedInterests;
+  //       return;
+  //     } else {
+  //       localUser[name] = value;
+  //     }
+  //   };
+
+  //   const handleClick = (event) => {
+  //     const { name, value } = event.target;
+  //     let tempArr = localUser[name].filter((foo) => foo !== value);
+  //     localUser[name] = tempArr;
+  //   };
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -56,62 +60,14 @@ function Form({ user, setUser, setInfo }) {
           </span>
         </p>
       </div>
-      <form
-        className="border-t border-gray-200"
-        onSubmit={(event) => onSubmitForm(event)}
-      >
-        {Object.keys(user).map((item) => {
+      <form className="border-t border-gray-200">
+        {userItems.map((item) => {
           return typeof user[item] === 'object' ? (
-            <label className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <span className="text-sm font-medium text-gray-500">{item}</span>
-              {user[item].map((subItem) => {
-                return (
-                  <input
-                    className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 ring-1 sm:rounded-lg p-1"
-                    type="text"
-                    key={subItem}
-                    name={item}
-                    value={subItem}
-                    onChange={(event) => handleChange(event)}
-                  />
-                );
-              })}
-            </label>
+            <ListForm user={user} setUser={setUser} category={item} />
           ) : (
-            <label className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <span className="text-sm font-medium text-gray-500">{item}</span>
-              <input
-                className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 ring-1 sm:rounded-lg p-1"
-                type="text"
-                key={item}
-                name={item}
-                value={user[item]}
-                onChange={(event) => handleChange(event)}
-              />
-            </label>
+            <TextForm key={item} user={user} setUser={setUser} item={item} />
           );
         })}
-        {/* <label className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <span className="text-sm font-medium text-gray-500">Name:</span>
-          <input
-            className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
-            type="text"
-            name="name"
-            value={user.name}
-            onChange={(event) => handleChange(event)}
-          />
-        </label> */}
-        {/* {user.interests.map((interest) => (
-          <label>
-            {interest}
-            <input
-              type="text"
-              name={'singleInterest%' + interest}
-              defaultValue={interest}
-              onChange={(event) => handleChange(event)}
-            />
-          </label>
-        ))} */}
       </form>
     </div>
   );
