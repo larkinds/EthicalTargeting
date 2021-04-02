@@ -5,6 +5,7 @@ function Info({ user, setInfo }) {
   };
 
   return (
+<<<<<<< Updated upstream
     <div className="bg-white shadow overflow-hidden w-2/3 sm:rounded-lg mb-10">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-gray-900">Header</h3>
@@ -30,7 +31,28 @@ function Info({ user, setInfo }) {
           </span>
         </p>
       </div>
+=======
+    <>
+>>>>>>> Stashed changes
       <div className="border-t border-gray-200">
+        <div className="m-5 flex flex-row justify-end">
+          <button onClick={(event) => setInfoButton(event)}>
+            <svg
+              className="h-5 w-5 text-gray-900"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+              />
+            </svg>
+          </button>
+        </div>
         {Object.keys(user).map((item) => {
           return typeof user[item] === 'object' ? (
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -58,7 +80,7 @@ function Info({ user, setInfo }) {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
 
