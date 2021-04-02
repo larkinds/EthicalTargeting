@@ -10,8 +10,26 @@ function App() {
     gender: 'F',
     occupation: 'Software Engineer',
     region: '',
-    interests: ['Steak', 'Arugula', 'Lemons', 'Parmesan'],
-    dislikes: ['racism', 'invalidation', 'other'],
+    interests: {
+      Steak: { name: 'steak', weight: 1 },
+      Arugula: { name: 'arugula', weight: 2 },
+      Lemons: { name: 'lemons', weight: 3 },
+      Parmesan: { name: 'parmesan', weight: 1 },
+    },
+    dislikes: {
+      racism: {
+        name: 'racism',
+        weight: 5,
+      },
+      invalidation: {
+        name: 'invalidation',
+        weight: 2,
+      },
+      other: {
+        name: ' other',
+        weight: 1,
+      },
+    },
   });
 
   const [info, setInfo] = useState(true);

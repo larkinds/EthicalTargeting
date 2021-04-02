@@ -1,36 +1,35 @@
+import TextItem from './TextItem';
+import ListItem from './ListItems';
+
 function Form({ user, setUser, setInfo }) {
-  let localUser = { ...user };
+  //   let localUser = { ...user };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    let possibleArr = name.split('%');
+  //   const handleChange = (event) => {
+  //     const { name, value } = event.target;
+  //     let possibleArr = name.split('%');
 
-    if (possibleArr.length > 1) {
-      let updatedInterests = user.interests.map((interest) => {
-        if (interest === possibleArr[1]) {
-          return value;
-        }
-        return interest;
-      });
-      localUser[possibleArr[0]] = updatedInterests;
-      return;
-    } else {
-      localUser[name] = value;
-    }
-  };
+  //     if (possibleArr.length > 1) {
+  //       let updatedInterests = user.interests.map((interest) => {
+  //         if (interest === possibleArr[1]) {
+  //           return value;
+  //         }
+  //         return interest;
+  //       });
+  //       localUser[possibleArr[0]] = updatedInterests;
+  //       return;
+  //     } else {
+  //       localUser[name] = value;
+  //     }
+  //   };
 
-  const handleClick = (event) => {
-    const { name, value } = event.target;
-    let tempArr = localUser[name].filter((foo) => foo !== value);
-    if (tempArr.length < 1) {
-      tempArr.push(' ');
-    }
-    localUser[name] = tempArr;
-  };
+  //   const handleClick = (event) => {
+  //     const { name, value } = event.target;
+  //     let tempArr = localUser[name].filter((foo) => foo !== value);
+  //     localUser[name] = tempArr;
+  //   };
 
-  const handleSubmit = (event) => {
+  const onSubmitForm = (event) => {
     event.preventDefault();
-    setUser(localUser);
     setInfo(true);
   };
 
@@ -41,7 +40,7 @@ function Form({ user, setUser, setInfo }) {
         <p className="mt-1 max-w-2xl text-sm text-gray-500">
           <span className="float-left">Subheader</span>
           <span className="float-right">
-            <button onClick={(event) => handleSubmit(event)}>
+            <button onClick={(event) => onSubmitForm(event)}>
               <svg
                 className="h-5 w-5 text-gray-900 float-left"
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,49 +59,12 @@ function Form({ user, setUser, setInfo }) {
           </span>
         </p>
       </div>
-      <form
-        className="border-t border-gray-200"
-        // onSubmit={(event) => handleSubmit(event)}
-      >
+      <form className="border-t border-gray-200">
         {Object.keys(user).map((item) => {
           return typeof user[item] === 'object' ? (
-            <label className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <span className="text-sm font-medium text-gray-500">{item}</span>
-              {user[item].map((subItem) => {
-                return (
-                  <span name={item} value={subItem}>
-                    <input
-                      className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 ring-1 sm:rounded-lg p-1"
-                      type="text"
-                      key={subItem}
-                      name={item + '%' + subItem}
-                      // using defaultValue to keep this input editable while working around React's state mgmt
-                      defaultValue={subItem}
-                      onChange={(event) => handleChange(event)}
-                    />
-                    <button
-                      name={item}
-                      value={subItem}
-                      onChange={(event) => handleClick(event)}
-                    >
-                      x
-                    </button>
-                  </span>
-                );
-              })}
-            </label>
+            <ListItem user={user} setUser={setUser} item={item} />
           ) : (
-            <label className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <span className="text-sm font-medium text-gray-500">{item}</span>
-              <input
-                className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 ring-1 sm:rounded-lg p-1"
-                type="text"
-                key={item}
-                name={item}
-                defaultValue={user[item]}
-                onChange={(event) => handleChange(event)}
-              />
-            </label>
+            <TextItem user={user} setUser={setUser} item={item} />
           );
         })}
       </form>
