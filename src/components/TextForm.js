@@ -1,10 +1,11 @@
-function TextItem({ user, setUser, item }) {
+function TextForm({ user, setUser, item }) {
   function updateState({ name, value }) {
     setUser({
       ...user,
       [name]: value,
     });
   }
+
   function onBlur(event) {
     updateState(event.target);
   }
@@ -29,4 +30,4 @@ function TextItem({ user, setUser, item }) {
   );
 }
 
-export default TextItem;
+export default TextForm;

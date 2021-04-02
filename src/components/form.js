@@ -1,7 +1,8 @@
-import TextItem from './TextItem';
-import ListItem from './ListItems';
+import TextForm from './TextForm';
+import ListForm from './ListForm';
 
 function Form({ user, setUser, setInfo }) {
+  const userItems = Object.keys(user);
   //   let localUser = { ...user };
 
   //   const handleChange = (event) => {
@@ -60,11 +61,11 @@ function Form({ user, setUser, setInfo }) {
         </p>
       </div>
       <form className="border-t border-gray-200">
-        {Object.keys(user).map((item) => {
+        {userItems.map((item) => {
           return typeof user[item] === 'object' ? (
-            <ListItem user={user} setUser={setUser} item={item} />
+            <ListForm user={user} setUser={setUser} category={item} />
           ) : (
-            <TextItem user={user} setUser={setUser} item={item} />
+            <TextForm key={item} user={user} setUser={setUser} item={item} />
           );
         })}
       </form>
