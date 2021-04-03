@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+  
+    "name": "Ethical Targeting",
+    "description": "This is a sample description",
+    "version": "1.0",
+  
+    "browser_action": {
+     "default_icon": "logo.png",
+     "default_popup": "popup.html"
+    },
+    "permissions": [
+     "activeTab",
+     "tabs"
+     ]
+  }
