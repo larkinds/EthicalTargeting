@@ -17,15 +17,9 @@ function App() {
   const [info, setInfo] = useState(true);
 
   return (
-<<<<<<< Updated upstream
-    <div className="bg-yellow-100 h-full">
-      <header className="text-lg md:text-2xl font-large text-gray-900">
-        <h1>Ethical Targeting</h1>
-=======
     <div className="bg-blue-100 h-full flex flex-col">
       <header className="text-lg md:text-2xl font-large text-gray-900 ml-4">
         <h1 className="m-4">Ethical Targeting</h1>
->>>>>>> Stashed changes
       </header>
       <div className="bg-white shadow overflow-hidden w-3/4 md:w-1/2 sm:rounded-lg self-center my-10">
         <div className="px-4 py-5 sm:px-6">
