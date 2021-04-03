@@ -1,6 +1,7 @@
 const urlMetadata = require('url-metadata');
 var keyword_extractor = require("keyword-extractor");
-
+// Input: url (String)
+// Output: Map, containing keywords as keys and their occurence number as values
 function findMetaTags(url){
     let keywordsDict = {};
     urlMetadata(url).then(
@@ -22,7 +23,7 @@ function findMetaTags(url){
                                                                         // else, adds the word to the dict with an initial value of 1.
            }
         }
-        console.log( keywordsDict);
+        return keywordsDict;
     },
     function (error) { 
         // failure handler
