@@ -35,9 +35,9 @@ function App() {
   const [info, setInfo] = useState(true);
 
   return (
-    <div className="bg-yellow-100 h-full flex flex-col">
-      <header className="text-lg md:text-2xl font-large text-gray-900 ml-4">
-        <h1 className="m-4">Ethical Targeting</h1>
+    <div className="bg-gray-100 h-full flex flex-col">
+      <header className=" bg-green-800 text-lg md:text-2xl font-large text-gray-900 ml-4">
+        <h1 className="text-white m-4">Ethical Targeting</h1>
       </header>
       <div className="bg-white shadow overflow-hidden w-3/4 md:w-1/2 sm:rounded-lg self-center my-10">
         <div className="px-4 py-5 sm:px-6">

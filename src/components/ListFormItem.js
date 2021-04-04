@@ -49,7 +49,7 @@ function ListFormItem({ item, category, user, setUser }) {
   return (
     <div className="col-end-3">
       <input
-        className="mt-1 sm:mt-0 text-sm text-gray-900 ring-1 sm:rounded-lg p-1"
+        className="mt-1 sm:mt-0 text-sm text-gray-900 ring-1 ring-green-700 sm:rounded-lg p-1"
         type="text"
         key={item}
         name={item}
