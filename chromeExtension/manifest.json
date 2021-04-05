@@ -9,8 +9,15 @@
      "default_icon": "logo.png",
      "default_popup": "popup.html"
     },
+    "background": {
+        "scripts": ["./backgroundCrawler.js"],
+        "persistent": false
+      },
     "permissions": [
-     "activeTab",
-     "tabs"
-     ]
-  }
+        "tabs",
+        "notifications",
+        "http://*/",
+        "https://*/",
+        "storage"
+    ]
+}

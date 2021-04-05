@@ -1,0 +1,22 @@
+{
+  "name": "projetMLHtaaAli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "url-metadata": "^2.5.0",
+    "keyword-extractor": "^0.0.19"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --entry ./src/js/app.js --output-filename ./dist/main.js",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
