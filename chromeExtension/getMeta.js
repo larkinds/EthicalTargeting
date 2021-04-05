@@ -29,8 +29,14 @@ chrome.storage.sync.get(['Interests'], function(keywordsDict) {
 
     // This is not storing the keywords Dict correctly I think :/ 
     // TODO FIX THIS
+
+
     chrome.storage.sync.set({Interests: keywordsDict});   
 
+
+    //this function is defined in the background.js function
+    //correction : use updateSte fuctions
+    //updateState('interests', keywordsDict);
 
 });
 
