@@ -1,6 +1,6 @@
 function TextInfo({ user, item }) {
   return (
-    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+    <div className="bg-white px-4 py-5 grid grid-cols-2 gap-4 sm:px-6">
       <p className="text-sm font-medium text-gray-500" key={item}>
         {item}
       </p>

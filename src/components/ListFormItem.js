@@ -49,7 +49,7 @@ function ListFormItem({ item, category, user, setUser }) {
   return (
     <div className="col-end-3">
       <input
-        className="mt-1 sm:mt-0 text-sm text-gray-900 ring-1 ring-green-700 sm:rounded-lg p-1"
+        className="w-10/12 s:w-11/12 mt-1 sm:mt-0 text-sm text-gray-900 ring-1 ring-green-700 rounded-lg p-1"
         type="text"
         key={item}
         name={item}
@@ -58,7 +58,7 @@ function ListFormItem({ item, category, user, setUser }) {
         onBlur={updateItem}
         onKeyPress={onKeyPress}
       />
-      <button className="ml-3" name={item} value={item} onClick={onClick}>
+      <button className="ml-2" name={item} value={item} onClick={onClick}>
         x
       </button>
     </div>

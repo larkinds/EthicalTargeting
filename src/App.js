@@ -39,7 +39,7 @@ function App() {
       <header className="bg-green-800 text-lg md:text-2xl font-large text-gray-900">
         <h1 className="text-white m-4">Ethical Targeting</h1>
       </header>
-      <div className="bg-white shadow overflow-hidden w-2/3 md:w-2/3 sm:rounded-lg self-center my-10">
+      <div className="bg-white shadow overflow-hidden w-3/4 md:w-2/3 sm:rounded-lg self-center my-10">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             Header
