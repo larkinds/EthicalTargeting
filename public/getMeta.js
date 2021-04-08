@@ -24,7 +24,6 @@ chrome.storage.sync.get(function(userInfo) {
         }
     }
 
-    chrome.runtime.sendMessage("1")
     // If the dict became too big, delete the keywords that have less than 4 occurences
     if (keywordsDict.length>10000) {
         let elem;
@@ -32,14 +31,12 @@ chrome.storage.sync.get(function(userInfo) {
             if (keywordsDict[elem]<4) delete keywordsDict[elem];
         }
     }
-    chrome.runtime.sendMessage("2")
     userInfo['interests'] = keywordsDict
 
     // This is not storing the keywords Dict correctly I think :/ 
     // TODO FIX THIS
     chrome.storage.sync.clear();
     chrome.storage.sync.set(userInfo); 
-    chrome.runtime.sendMessage("3")
 
     //this function is defined in the background.js function
     //correction : use updateSte fuctions
