@@ -1,20 +1,20 @@
+/* eslint-disable no-undef */
 //at installation
 chrome.runtime.onInstalled.addListener((details) => {
     const reason = details.reason;
     console.log(reason);
-    if (reason === "install" ||reason === "update" ){
+    if (reason === "install" || reason ==="update"){
       //NOTE: need to update this with the user's info
-      chrome.storage.sync.set(
-        {"userInfo": {
-                      'name':'Prabal',
-                      'age':'21',
-                      'gender':'Male',
-                      'occupation':'Student',
-                      'region':'United States',
-                      'interests':{'Pokemon':1, 'Adventure':2, 'colours':3},
-                      'dislikes':['Soccer','Serious People']
-                      }}
-        );
+      var userInfo = {
+        'name':'Prabal',
+        'age':'21',
+        'gender':'Male',
+        'occupation':'Student',
+        'region':'United States',
+        'interests':{'Pokemon':1, 'Adventure':2, 'colours':3},
+        'dislikes':['Soccer','Serious People']
+        }
+      chrome.storage.sync.set(userInfo);
     }
   })
   
@@ -23,9 +23,6 @@ chrome.runtime.onInstalled.addListener((details) => {
     let keywordsDict = {};
     let script = {file: `getMeta.js`};
     chrome.tabs.executeScript(tabId, script)
-    
-    //THIS IS FOR TESTING PURPOSES: Writing the keywords dict each time it gets updated
-    chrome.storage.sync.get('userInfo', function(result){console.log("resultat de l'update-28:" + JSON.stringify(result))})
   }
   
   //at new tab creation, with an exception to the "new tab" page
@@ -114,8 +111,7 @@ chrome.runtime.onInstalled.addListener((details) => {
       chrome.tabs.executeScript({ file: "getAds.js" })
     }
   });
-  /*
-  //note that the function below can be used to send updated data to dfinity
+
   chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (var key in changes) {
       var storageChange = changes[key];
@@ -127,4 +123,4 @@ chrome.runtime.onInstalled.addListener((details) => {
                   storageChange.newValue);
     }
   });
-  */
+  
