@@ -31,7 +31,7 @@ function Form({ user, setUser, setInfo }) {
       </div>
       {userItems.map((item) => {
         return typeof user[item] === 'object' ? (
-          <ListForm user={user} setUser={setUser} category={item} />
+          <ListForm key={item} user={user} setUser={setUser} category={item} />
         ) : (
           <TextForm key={item} user={user} setUser={setUser} item={item} />
         );

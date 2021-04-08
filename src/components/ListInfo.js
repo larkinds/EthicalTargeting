@@ -8,7 +8,7 @@ function ListInfo({ user, item }) {
       <p className="text-sm font-medium text-gray-500">{item}</p>
       {values.map((value) => {
         return (
-          <div className="col-end-3">
+          <div key={value} className="col-end-3">
             <p
               className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-end-3 p-1"
               key={value}

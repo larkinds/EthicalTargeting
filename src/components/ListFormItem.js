@@ -1,6 +1,6 @@
 function ListFormItem({ item, category, user, setUser }) {
   function updateState(newItems) {
-    if (newItems.length === 0) newItems = '';
+    if (newItems.length === 0) newItems = ' ';
 
     setUser({
       ...user,
