@@ -103,8 +103,19 @@ chrome.runtime.onInstalled.addListener((details) => {
       console.log(response)
   })
   
+  //Add the ad triger, show 1 ad each n minutes
+  chrome.alarms.create("adTriger", {
+    delayInMinutes: 1,
+    periodInMinutes: 1
+  });
+  
+  chrome.alarms.onAlarm.addListener(function(alarm) {
+    if (alarm.name === "adTriger") {
+      chrome.tabs.executeScript({ file: "getAds.js" })
+    }
+  });
   /*
-  //note that the funciton below can be used to send updated data to dfinity
+  //note that the function below can be used to send updated data to dfinity
   chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (var key in changes) {
       var storageChange = changes[key];
@@ -117,15 +128,3 @@ chrome.runtime.onInstalled.addListener((details) => {
     }
   });
   */
-//testing
-  chrome.storage.onChanged.addListener(function(changes, namespace) {
-    for (var key in changes) {
-      var storageChange = changes[key];
-      console.log('Storage key "%s" in namespace "%s" changed. ' +
-                  'Old value was "%s", new value is "%s".',
-                  key,
-                  namespace,
-                  storageChange.oldValue,
-                  storageChange.newValue);
-    }
-  });

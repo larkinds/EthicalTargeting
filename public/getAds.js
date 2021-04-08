@@ -1,4 +1,4 @@
-const { stringify } = require("postcss")
+
 
 function getAdByRelevance()
 {   //TODO change this with the actual profile of the user
@@ -197,10 +197,32 @@ function getAdByRelevance()
         }
 
         }
-
+    if (adsRelevanceScore[Object.keys(adsRelevanceScore).reduce((a, b) => adsRelevanceScore[a] > adsRelevanceScore[b] ? a : b)] <0 ) return null
     let adToDisplay = ads[Object.keys(adsRelevanceScore).reduce((a, b) => adsRelevanceScore[a] > adsRelevanceScore[b] ? a : b)][["image"]]
     return adToDisplay
-
 }
 
-getAdByRelevance();
+function displayAd(){
+        //display ad in chrome tab
+        let adToDisplay = getAdByRelevance()
+
+        //if no relevant add was found, don't display anything
+        if (adToDisplay == null) return;
+
+        var dialog = document.createElement("dialog")
+        var image = document.createElement("img")
+        image.src = adToDisplay["url"]
+        dialog.appendChild(image)
+        image.style.width = adToDisplay["width"] + "px"
+        image.style.height = adToDisplay["height"] + "px"
+        var close = document.createElement("button")
+        close.textContent = "Close"
+        close.addEventListener("click", function() {
+        dialog.close()
+        })
+        dialog.appendChild(close)
+        document.body.appendChild(dialog)
+        dialog.showModal()
+}
+
+displayAd()
