@@ -1,7 +1,4 @@
 //when a tab get initialized/ URL gets accessed
-
-
-
 //when a tab gets activated
 chrome.tabs.onActivated.addListener((tab) => {
 
