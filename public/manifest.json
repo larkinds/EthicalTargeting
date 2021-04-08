@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "description": "Strong password generator",
-  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "permissions": ["storage", "activeTab", "scripting", "tabs","notifications","http://*/", "https://*/"],
   "icons": {
       "512": "logo512.png"
   },
   "browser_action": {
       "default_icon": "logo512.png",
       "default_popup": "popup1.html"
+  },
+  "background": {
+    "scripts": ["./backgroundCrawler.js"],
+    "persistent": false
   },
   "options_page": "options.html"
 }
