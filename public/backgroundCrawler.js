@@ -6,13 +6,13 @@ chrome.runtime.onInstalled.addListener((details) => {
     if (reason === "install" || reason ==="update"){
       //NOTE: need to update this with the user's info
       var userInfo = {
-        'name':'Prabal',
+        'profileName':'Prabal',
         'age':'21',
         'gender':'Male',
         'occupation':'Student',
         'region':'United States',
-        'interests':{'Pokemon':1, 'Adventure':2, 'colours':3},
-        'dislikes':['Soccer','Serious People']
+        'interests':{'Pokemon':{'name': 'pokemon', 'weigth':1}, 'Adventure':{'name':'adventure', 'weight':2}, 'colours':{'name':'colours', 'weight':3}},
+        'dislikes':{'Racism':{'name': 'racism', 'weight': 5},'Serious People':{'name': 'invalidation', 'weight': 2}}
         }
       chrome.storage.sync.set(userInfo);
     }
