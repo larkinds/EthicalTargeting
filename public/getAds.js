@@ -1,6 +1,4 @@
-
-
-function getAdByRelevance()
+async function getAdByRelevance()
 {   //TODO change this with the actual profile of the user
     let user_profile = {
         'name':'Prabal',
@@ -14,7 +12,11 @@ function getAdByRelevance()
 
     // TODO ads = get_json()
     // TODO REMOVE the below line and replace it with ads = get_json_from_James_url()
-    let ads = [{
+
+    let publicUrl = 'https://gf3q7-kyaaa-aaaab-aa6aq-cai.ic0.app/'
+    let rawAds = await fetch(publicUrl);
+    let ads = await rawAds.json();
+    ads = ads.concat([{
         "id": "0",
         "owner": "jkmartindale",
         "image": {
@@ -93,7 +95,7 @@ function getAdByRelevance()
             },
             "dislikes": null
         }
-    }]
+    }]);
 
     // calculate the score of each ad to decide which ad to display
 
