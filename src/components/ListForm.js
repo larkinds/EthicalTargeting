@@ -1,4 +1,5 @@
 import ListFormItem from './ListFormItem';
+import EmptyFormItem from './EmptyFormItem';
 
 function ListForm({ user, setUser, category }) {
   return (
@@ -7,6 +8,7 @@ function ListForm({ user, setUser, category }) {
       {Object.keys(user[category]).map((item) => {
         return (
           <ListFormItem
+            key={item}
             item={item}
             category={category}
             user={user}
@@ -14,6 +16,12 @@ function ListForm({ user, setUser, category }) {
           />
         );
       })}
+      <EmptyFormItem
+        key="empty"
+        category={category}
+        user={user}
+        setUser={setUser}
+      />
     </div>
   );
 }
