@@ -39,7 +39,8 @@ function EmptyFormItem({ category, user, setUser }) {
   return (
     <div className="col-end-3">
       <div
-        className="w-10/12 s:w-11/12 mt-1 sm:mt-0 text-sm text-gray-900 ring-1 ring-red-700 rounded-lg p-1"
+        className="w-10/12 s:w-11/12 mt-1 sm:mt-0 text-sm text-gray-900 ring-1 ring-green-700 rounded-lg p-1"
+
         type="text"
         key="newItem"
         name="newItem"

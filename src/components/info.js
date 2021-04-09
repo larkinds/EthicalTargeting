@@ -29,9 +29,9 @@ function Info({ user, setInfo }) {
       </div>
       {Object.keys(user).map((item) => {
         return typeof user[item] === 'object' ? (
-          <ListInfo user={user} item={item} />
+          <ListInfo key={item} user={user} item={item} />
         ) : (
-          <TextInfo user={user} item={item} />
+          <TextInfo key={item} user={user} item={item} />
         );
       })}
     </div>
