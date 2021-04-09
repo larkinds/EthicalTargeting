@@ -1,3 +1,5 @@
+# Ethical Hacking [![Greetings](https://github.com/larkinds/EthicalTargeting/actions/workflows/greetings.yml/badge.svg)](https://github.com/larkinds/EthicalTargeting/actions/workflows/greetings.yml)
+
 ## Inspiration
 Most data collection of Internet user behavior ultimately comes from advertising's desire for **audience targeting and campaign analytics**. Constant exposés in the news and the gradual rollout of data privacy regulations are not enough to fight this **technological arms race**. Pandora's box has been opened and advertisers will not back down from having access to targeting and analytics. That inspired us to come up with this project in order to help people protect their privacy while making the ad-targeting process more accurate and reliable.
 
