@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="bg-gray-100 h-full w-full flex flex-col">
-      <header className="bg-green-800 text-lg md:text-2xl font-large text-gray-900">
+      <header className="bg-red-800 text-lg md:text-2xl font-large text-gray-900">
         <h1 className="text-white m-4">Ethical Targeting</h1>
       </header>
       <div className="bg-white shadow overflow-hidden w-3/4 md:w-2/3 sm:rounded-lg self-center my-10">
