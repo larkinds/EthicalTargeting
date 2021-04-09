@@ -1,11 +1,12 @@
-import { useState } from 'react';
+/* global chrome */
+import { useState, useEffect } from 'react';
 import './App.css';
 import Form from './components/form';
 import Info from './components/info';
 
 function App() {
   const [user, setUser] = useState({
-    name: 'Larkin',
+    profileName: 'Larkin',
     age: 28,
     gender: 'F',
     occupation: 'Software Engineer',
@@ -31,12 +32,81 @@ function App() {
       },
     },
   });
-
+  
   const [info, setInfo] = useState(true);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+      chrome.storage.sync.get(function(userInfo) {
+        let tempUser = {}
+        tempUser.profileName = userInfo['profileName'];
+        tempUser.age = userInfo['age'];
+        tempUser.gender = userInfo['gender'];
+        tempUser.occupation = userInfo['occupation'];
+        tempUser.interests = userInfo['interests'];
+        tempUser.dislikes =  userInfo['dislikes'];
+        
+        setUser(tempUser);
+    });
+  }, []);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+      chrome.storage.sync.get(function(userInfo) {
+        userInfo['profileName'] = user.profileName;
+        chrome.storage.sync.clear();
+        chrome.storage.sync.set(userInfo); 
+    });
+  },[user.profileName]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+      chrome.storage.sync.get(function(userInfo) {
+        userInfo['age'] = user.age;
+        chrome.storage.sync.clear();
+        chrome.storage.sync.set(userInfo); 
+    });
+  },[user.age]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+      chrome.storage.sync.get(function(userInfo) {
+        userInfo['gender'] = user.gender;
+        chrome.storage.sync.clear();
+        chrome.storage.sync.set(userInfo); 
+    });
+  },[user.gender]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+      chrome.storage.sync.get(function(userInfo) {
+        userInfo['occupation'] = user.occupation;
+        chrome.storage.sync.clear();
+        chrome.storage.sync.set(userInfo); 
+    });
+  },[user.occupation]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+      chrome.storage.sync.get(function(userInfo) {
+        userInfo['interests'] = user.interests;
+        chrome.storage.sync.clear();
+        chrome.storage.sync.set(userInfo); 
+    });
+  },[user.interests]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+      chrome.storage.sync.get(function(userInfo) {
+        userInfo['dislikes'] = user.dislikes;
+        chrome.storage.sync.clear();
+        chrome.storage.sync.set(userInfo); 
+    });
+  },[user.dislikes]);
 
   return (
     <div className="bg-gray-100 h-full w-full flex flex-col">
-      <header className="bg-green-800 text-lg md:text-2xl font-large text-gray-900">
+      <header className="bg-red-800 text-lg md:text-2xl font-large text-gray-900">
         <h1 className="text-white m-4">Ethical Targeting</h1>
       </header>
       <div className="bg-white shadow overflow-hidden w-3/4 md:w-2/3 sm:rounded-lg self-center my-10">

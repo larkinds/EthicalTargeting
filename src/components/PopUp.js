@@ -41,7 +41,7 @@ function PopUp() {
             <Switch
               onChange={() => setToggle(!toggle)}
               className={`flex items-center w-14 h-9 p-1 flex-shrink-0 rounded-full ease-in-out cursor-pointer focus:outline-none ${
-                toggle ? 'bg-green-700' : 'bg-gray-100'
+                toggle ? 'bg-red-700' : 'bg-gray-100'
               }`}
             >
               <span
@@ -58,12 +58,12 @@ function PopUp() {
             <input className="w-" type="text" placeholder="30" />
             <label>Minutes</label>
           </div>
-          <button className="bg-green-700 rounded text-white p-2 m-2">
+          <button className="bg-red-700 rounded text-white p-2 m-2">
             Start
           </button>
         </div>
         <div className="bg-gray-50 border-2 self-center w-72 h-auto p-6 m-5 flex justify-center">
-          <button className="bg-green-700 rounded text-white p-2">
+          <button className="bg-red-700 rounded text-white p-2">
             Report an Issue
           </button>
         </div>
