@@ -7,6 +7,16 @@ The more the weight of a keyword increases, the more likely ads related to that 
 And to give the users complete control over their data, the chrome extension offers them the possibility to update, remove, and switch between multiple profiles at any time **with immediate effect**, blacklist all ads related to certain keywords, disable tracking when visiting certain websites, or even disable ad personalization altogether. 
 We can't convert the megacorps with massive ad budgets, but we can provide an ethical alternative to the big ad networks for **SMBs who rely on effective advertising to drive revenue**.
 
+### Sample Ad
+![image](https://user-images.githubusercontent.com/39817922/114228988-3b342b80-9945-11eb-88f7-87877c1c18db.png)
+
+### Popup Window
+![image](https://user-images.githubusercontent.com/39817922/114229095-6159cb80-9945-11eb-94ed-69bf45fd177e.png)
+
+### Customize/User ad preferences Window
+![image](https://user-images.githubusercontent.com/39817922/114229897-71be7600-9946-11eb-8533-0299d427931f.png)
+
+
 ## How we built it
 This service runs on the [DFINITY Internet Computer](https://dfinity.org/), a decentralized network of independent data centers enabling a public ad network that is:
 
@@ -42,7 +52,16 @@ The DFINITY backend is connected to our [Chrome Extension](), that takes care of
 
 
 ## How to use
-- Download the extension from this link: https://easyupload.io/msfpz5
+- Download the extension from this link: https://www.file.io/download/NIghuGalUpwL
 - Unzip it
 - drag into the chrome extension' tab
 - Enjoy!
+
+## Contributions
+* [Larkin Smith](https://github.com/larkinds)
+* [Ali Doggaz](https://github.com/Ali-Doggaz)
+* [Prabal Chhatkuli](https://github.com/prabalchhatkuli)
+* [James Martindale](http://github.com)
+
+### Ethical Targeting Dfinity backend
+[Dfnity backend repo](https://github.com/jkmartindale/ethical_targeting-backend)
