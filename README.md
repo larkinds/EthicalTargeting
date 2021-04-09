@@ -42,7 +42,7 @@ The DFINITY backend is connected to our [Chrome Extension](), that takes care of
 
 
 ## How to use
-- Download the extension from this link: https://www.file.io/download/NIghuGalUpwL
+- Download the extension from this link: https://easyupload.io/msfpz5
 - Unzip it
 - drag into the chrome extension' tab
 - Enjoy!
