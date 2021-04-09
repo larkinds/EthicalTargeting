@@ -1,14 +1,14 @@
 {
-  "name": "Strong Password Generator",
+  "name": "Ethical Targeting",
   "version": "1.0.0",
   "manifest_version": 2,
-  "description": "Strong password generator",
+  "description": "Most data collection of Internet user behavior ultimately comes from advertising's desire for **audience targeting and campaign analytics**. Constant exposés in the news and the gradual rollout of data privacy regulations are not enough to fight this **technological arms race**. Pandora's box has been opened and advertisers will not back down from having access to targeting and analytics. Ethical Targeting recognizes this reality and compromises by **moving ad targeting to the browser**. Browsers pull from a public ledger of ads and match ads with locally stored user profiles that **never touch the Internet**. ",
   "permissions": ["storage", "activeTab", "scripting", "tabs","notifications","http://*/", "https://*/","alarms"],
   "icons": {
-      "512": "logo512.png"
+      "512": "logo.png"
   },
   "browser_action": {
-      "default_icon": "logo512.png",
+      "default_icon": "logo.png",
       "default_popup": "popup1.html"
   },
   "background": {

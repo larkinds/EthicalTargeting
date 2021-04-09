@@ -1,104 +1,15 @@
 async function getAdByRelevance()
 {   //TODO change this with the actual profile of the user
-    let user_profile = {
-        'name':'Prabal',
-        'age':'',
-        'gender':'Male',
-        'occupation':'Student',
-        'region':'United States',
-        'interests':{'google':5,"pinterest":3,"pictures":3},
-        'dislikes':['soccer','Serious People']
-        }
+    let user_profile = {}
 
-    // TODO ads = get_json()
-    // TODO REMOVE the below line and replace it with ads = get_json_from_James_url()
+    chrome.storage.sync.get(function(result){user_profile = result})
+
 
     let publicUrl = 'https://gf3q7-kyaaa-aaaab-aa6aq-cai.ic0.app/'
     let rawAds = await fetch(publicUrl);
     let ads = await rawAds.json();
-    ads = ads.concat([{
-        "id": "0",
-        "owner": "jkmartindale",
-        "image": {
-            "url": "https://newsroom.pinterest.com/sites/pinnews/files/post_main_content_image/2019-07/Screen%20Shot%202019-07-25%20at%208.59.19%20AM.png",
-            "width": 1156,
-            "height": 632
-        },
-        "link": "https://newsroom.pinterest.com/en/post/ads-on-the-go",
-        "start": "50000000",
-        "end": "5000000",
-        "profile": {
-            "age": {
-                "all": [],
-                "some": [],
-                "none": []
-            },
-            "gender": {
-                "all": ["Male"],
-                "some": [],
-                "none": []
-            },
-            "occupation": {
-                "all": [],
-                "some": [],
-                "none": []
-            },
-            "industry": {
-                "all": [],
-                "some": [],
-                "none": []
-            },
-            "interests": {
-                "all": ["pinterest"],
-                "some": ["tutorials","pictures","ads","promote"],
-                "none": []
-            },
-            "dislikes": null
-        }
-    },
-    {
-        "id": "1",
-        "owner": "jkmartindale",
-        "image": {
-            "url": "https://www.google.com/search?q=GOOGLE+IMAGE&sxsrf=ALeKk01xkywtXnqD9px0U6udg6J5-Ad6Ew:1617868954599&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjCr9PCl-7vAhUIzqQKHWqcCNkQ_AUoAXoECAEQAw&biw=1920&bih=941#imgrc=7fEVakcJUgrsmM",
-            "width": 1200,
-            "height": 412
-        },
-        "link": "https://www.google.com/",
-        "start": "50000000",
-        "end": "5000000",
-        "profile": {
-            "age": {
-                "all": [],
-                "some": [],
-                "none": []
-            },
-            "gender": {
-                "all": [],
-                "some": [],
-                "none": []
-            },
-            "occupation": {
-                "all": [],
-                "some": [],
-                "none": []
-            },
-            "industry": {
-                "all": [],
-                "some": [],
-                "none": []
-            },
-            "interests": {
-                "all": [],
-                "some": ["google","research","find","query","search","engine","internet","chrome","browser","brave","safari","IE","edge"],
-                "none": []
-            },
-            "dislikes": null
-        }
-    }]);
 
     // calculate the score of each ad to decide which ad to display
-
     let adsRelevanceScore = {} //stores the relevance score of each ad
 
     //Calculate the score based on the interests
@@ -118,7 +29,7 @@ async function getAdByRelevance()
                     continue out_loop;
                 }
                 else{
-                    let bonus = Math.min(user_profile['interests'][profile["interests"]["all"][elem]], 10)
+                    let bonus = Math.min(user_profile['interests'][profile["interests"]["all"][elem]]["weight"], 20)
                     adsRelevanceScore[index] += bonus
                 }
             }
@@ -136,13 +47,13 @@ async function getAdByRelevance()
         if( !(profile["interests"]["some"] === undefined) )
         {   for(let elem in profile["interests"]["some"]){
                 //if keyword is in the user's dislikes, give a neg score to the ad and go to next ad
-                if(user_profile['dislikes'].includes(profile["interests"]["some"][elem])){
+                if(user_profile['dislikes'].hasOwnProperty(profile["interests"]["some"][elem])){
                     adsRelevanceScore[index] = -1;
                     continue out_loop;
                 }
                 //if optional keyword is found, increment the ad's relevance score
                 else if (user_profile['interests'].hasOwnProperty(profile["interests"]["some"][elem])){
-                    let bonus = Math.min(user_profile['interests'][profile["interests"]["some"][elem]], 5)
+                    let bonus = Math.min(user_profile['interests'][profile["interests"]["some"][elem]]["weight"], 10)
                     adsRelevanceScore[index] += bonus
                 }
             }
@@ -157,60 +68,73 @@ async function getAdByRelevance()
         let profile = ads[index]["profile"]
 
         //Checks the age criteria
-        if(!(profile["age"]["all"].includes(user_profile["age"])) && profile["age"]["all"].length>0){
-            adsRelevanceScore[index] = -1;
-            continue;
+        if( !(profile["age"] === null))
+        {    if(profile["age"].hasOwnProperty("all"))
+             if(!(profile["age"]["all"].includes(user_profile["age"])) && profile["age"]["all"].length>0){
+                adsRelevanceScore[index] = -1;
+                continue;
+            }
+            if(profile["age"].hasOwnProperty("none"))
+            if(profile["age"]["none"].includes(user_profile["age"])){
+                adsRelevanceScore[index] = -1;
+                continue;
+            }
+            if(profile["age"].hasOwnProperty("some"))
+            if (profile["age"]["some"].includes(user_profile["age"]) || profile["age"]["all"].includes(user_profile["age"])){
+                    adsRelevanceScore[index]+=3
+            }
+    
         }
-        if(profile["age"]["none"].includes(user_profile["age"])){
-            adsRelevanceScore[index] = -1;
-            continue;
-        }
-
-        if (profile["age"]["some"].includes(user_profile["age"]) || profile["age"]["all"].includes(user_profile["age"])){
-                adsRelevanceScore[index]+=3
-        }
-
+        
         //Checks the gender criteria
-        if(!(profile["gender"]["all"].includes(user_profile["gender"])) && profile["gender"]["all"].length>0){
-            adsRelevanceScore[index] = -1;
-            continue;
-        }
-        if(profile["gender"]["none"].includes(user_profile["gender"])){
-            adsRelevanceScore[index] = -1;
-            continue;
-        }
-
-        if (profile["gender"]["some"].includes(user_profile["gender"]) || profile["gender"]["all"].includes(user_profile["gender"])){
-                adsRelevanceScore[index]+=2
+        if( !(profile["gender"] === null))
+        {   if(profile["gender"].hasOwnProperty("all"))
+            if(!(profile["gender"]["all"].includes(user_profile["gender"])) && profile["gender"]["all"].length>0){
+                adsRelevanceScore[index] = -1;
+                continue;
+            }
+            if(profile["gender"].hasOwnProperty("none"))
+            if(profile["gender"]["none"].includes(user_profile["gender"])){
+                adsRelevanceScore[index] = -1;
+                continue;
+            }
+            if(profile["gender"].hasOwnProperty("some"))
+            if (profile["gender"]["some"].includes(user_profile["gender"]) || profile["gender"]["all"].includes(user_profile["gender"])){
+                    adsRelevanceScore[index]+=2
+            }
         }
 
         //checks occupation/job criteria
-        if(!(profile["occupation"]["all"].includes(user_profile["occupation"])) && profile["occupation"]["all"].length>0){
+        if( !(profile["occupation"] === null))
+        {   if(profile["occupation"].hasOwnProperty("all"))
+            if(!(profile["occupation"]["all"].includes(user_profile["occupation"])) && profile["occupation"]["all"].length>0){
             adsRelevanceScore[index] = -1;
             continue;
-        }
-        if(profile["occupation"]["none"].includes(user_profile["occupation"])){
-            adsRelevanceScore[index] = -1;
-            continue;
+            }
+            
+            if(profile["occupation"].hasOwnProperty("none"))
+            if(profile["occupation"]["none"].includes(user_profile["occupation"])){
+                adsRelevanceScore[index] = -1;
+                continue;
+            }
+            
+            if(profile["occupation"].hasOwnProperty("some"))
+            if (profile["occupation"]["some"].includes(user_profile["occupation"]) || profile["occupation"]["all"].includes(user_profile["occupation"])){
+                    adsRelevanceScore[index]+=5
+            }
         }
 
-        if (profile["occupation"]["some"].includes(user_profile["occupation"]) || profile["occupation"]["all"].includes(user_profile["occupation"])){
-                adsRelevanceScore[index]+=5
-        }
-
-        }
-    if (adsRelevanceScore[Object.keys(adsRelevanceScore).reduce((a, b) => adsRelevanceScore[a] > adsRelevanceScore[b] ? a : b)] <0 ) return null
-    let adToDisplay = ads[Object.keys(adsRelevanceScore).reduce((a, b) => adsRelevanceScore[a] > adsRelevanceScore[b] ? a : b)][["image"]]
+    }
+    if (adsRelevanceScore[Object.keys(adsRelevanceScore).reduce((a, b) => adsRelevanceScore[a] > adsRelevanceScore[b] ? a : b)] < 0 ) return null //if no ad found, return null
+    let adToDisplay = ads[Object.keys(adsRelevanceScore).reduce((a, b) => adsRelevanceScore[a] > adsRelevanceScore[b] ? a : b)]["image"]
     return adToDisplay
 }
 
-function displayAd(){
-        //display ad in chrome tab
-        let adToDisplay = getAdByRelevance()
-
-        //if no relevant add was found, don't display anything
+//display ad in chrome tab
+async function displayAd(){
+        let adToDisplay = await getAdByRelevance()
+        //if no relevant ad was found, don't display anything
         if (adToDisplay == null) return;
-
         var dialog = document.createElement("dialog")
         var image = document.createElement("img")
         image.src = adToDisplay["url"]
