@@ -1,13 +1,16 @@
 # Ethical Hacking [![Greetings](https://github.com/larkinds/EthicalTargeting/actions/workflows/greetings.yml/badge.svg)](https://github.com/larkinds/EthicalTargeting/actions/workflows/greetings.yml)
 
 ## Inspiration
-Most data collection of Internet user behavior ultimately comes from advertising's desire for **audience targeting and campaign analytics**. Constant exposés in the news and the gradual rollout of data privacy regulations are not enough to fight this **technological arms race**. Pandora's box has been opened and advertisers will not back down from having access to targeting and analytics. That inspired us to come up with this project in order to help people protect their privacy while making the ad-targeting process more accurate and reliable.
+Most data collection of Internet user behavior ultimately comes from advertising's desire for **audience targeting and campaign analytics**. Constant exposés in the news and the gradual rollout of data privacy regulations are not enough to fight this **technological arms race**. Pandora's box has been opened and advertisers will not back down from having access to targeting and analytics.
+
+Ethical Targeting envisions a world that lets advertisers use targeting and analytics while protecting privacy. We can't convert the megacorps with massive ad budgets, but we can provide an ethical alternative to the big ad networks for **SMBs who rely on effective advertising to drive revenue**.
 
 ## What it does
-"Ethical Targeting"  **moves ad targeting to the browser**. Browsers pull from a public ledger of ads and match ads with locally stored user profiles that **never touch the Internet**. The chrome extension introduces a tracking feature: while the user is surfing, the keywords of the websites' metatags he visits will get added to his profile, with a certain weight. E.g: If the user consults some React tutorials, the keywords React, Tutorials, and Web Development will be added to his profile with an important weight.
-The more the weight of a keyword increases, the more likely ads related to that keyword will be displayed to the user.  
-And to give the users complete control over their data, the chrome extension offers them the possibility to update, remove, and switch between multiple profiles at any time **with immediate effect**, blacklist all ads related to certain keywords, disable tracking when visiting certain websites, or even disable ad personalization altogether. 
-We can't convert the megacorps with massive ad budgets, but we can provide an ethical alternative to the big ad networks for **SMBs who rely on effective advertising to drive revenue**.
+Ethical Targeting  **moves ad targeting to the browser**. Browsers using the Chrome extension pull from a public ledger of ads and match ads with locally stored user profiles that **never touch the Internet**. Advertisers still get audience targeting like before, but now users have complete control of their data.
+
+While the user is surfing the web, the extension analyzes keywords and metadata of the webpages they visit, adding interests to their local user profile with a certain weight. For example, viewing several React tutorials will increase the weights of the `react`, `tutorials`, and `web development` interests in the user's profile. The higher the weight of a keyword, the more likely ads related to that keyword will be displayed to the user.
+
+**Users have complete control over their data.** The extension offers the ability to update, remove, and switch between multiple profiles at any time **with immediate effect**. Users can block all ads related to certain keywords, disable tracking when visiting certain websites, or even disable ad personalization altogether. All of this happens offline, giving the user full confidence that their opt-out means something.
 
 ### Sample Ad
 ![image](https://user-images.githubusercontent.com/39817922/114228988-3b342b80-9945-11eb-88f7-87877c1c18db.png)
@@ -18,55 +21,75 @@ We can't convert the megacorps with massive ad budgets, but we can provide an et
 ### Customize/User ad preferences Window
 ![image](https://user-images.githubusercontent.com/39817922/114229897-71be7600-9946-11eb-8533-0299d427931f.png)
 
+## Try it out
+**Chrome extension**  
+1. [Download the extension](https://github.com/larkinds/EthicalTargeting/releases)
+1. Unzip it into a folder you won't delete until you uninstall the extension
+1. Open `chrome://extensions` and switch on developer mode
+1. Drag the folder into the Chrome extensions tab
+1. Enjoy!
+
+Ad management UI: <https://glz5x-riaaa-aaaab-aa6bq-cai.ic0.app>
+
+## Development
+
+**Prerequisites**  
+- [Yarn](https://yarnpkg.com/)
+- [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) if building on Windows, due to a Bash build script
+
+Building is straightforward:
+
+```sh
+git clone https://github.com/larkinds/EthicalTargeting.git
+cd EthicalTargeting
+yarn install
+yarn build
+```
 
 ## How we built it
-This service runs on the [DFINITY Internet Computer](https://dfinity.org/), a decentralized network of independent data centers enabling a public ad network that is:
+The backend service runs on the [DFINITY Internet Computer](https://dfinity.org/), a decentralized network of independent data centers enabling a public ad network that is:
 
 * **Transparent:** anyone can see what ads are in the ledger (past/present/future) and who funded them  
 * **Private:** nobody will know who clicked on an ad or what their interests/demographics are  
 * **Targeted:** actually relevant to the user, making them more useful to the user and effective for the advertiser  
 * **Truly open:** not stored in any one data center and controlled by community governance in the future
 
-The DFINITY backend is connected to our [Chrome Extension](), that takes care of building and storing the user's profile, tracking him, and displaying the relevant ads in his browser. The UI of the extension was built using React, JS, HTML, and CSS, and the entire logic of the extension was built using vanilla JS.
+Browsers running our extension pull the entire ledger of ads from the backend service, and filter them through the user's current profile to find ads that are relevant and useful to that specific person.
+
+The extension is built with React, Tailwind CSS, HTML, and vanilla JavaScript.
 
 ## Challenges we ran into
-- Learning MOTOKO from scratch
-- Creating a JSON serializer from scratch for MOTOKO, as it isn't implemented in the language. (https://github.com/jkmartindale/ethical_targeting-backend/blob/staging/src/ads_ledger/JSON.mo#L152)
-- Filtering the large number of keywords associated to each website
-- Understanding how chrome extensions work while dealing with a bad documentation (shoutout to our pod members and to StackOverflow for helping us figure out some things about chrome's API) 
-- We didn't know that some npm packages weren't allowed in chrome extensions, and we lost a lot of time figuring out that it was the source of the errors we had.
+* **Motoko:** The first-party language of the Internet Computer, at just 17 months old, is missing a lot of standard library functions and features common in older languages. Learning a new language from incomplete documentation was a welcome challenge.
+* **Chrome extension documentation:** Not to be outdone by Motoko, Chrome's extension API has incomplete and inconsistent documentation. Shout-out to Stack Overflow and our fellow pod members for helping us figure out the API!
+* **Webpage categorization:** Big Tech has put millions of dollars into how they infer our interests, and attempting to recreate that in just 3 weeks was a daunting task. We're proud of how well our demo interests generator works.
+* **Extension bundling:** Chrome extensions have additional restrictions on what libraries and npm packages can be used, resulting in confusing errors and convoluted bundling setups.
 
 ## Accomplishments that we're proud of
-- The project turned out to be way bigger than what we initially expected, but we still managed to finish it in time
-- The accuracy/relevance of the ads is way better than what we thought it would be
-- Learning MOTOKO and chrome extension's API
-- As a team, we had a meeting every day and organized plenty of pair programming sessions
+- Managing to finish such a large and complex project in just 3 weeks
+- Writing a JSON serializer from scratch in Motoko, without type introspection
+- The extension is able to infer user interests a lot better than expected
+- Learning Chrome's Extension API and the Internet Computer environment
+- As a team, we met every day and organized several pair programming sessions
+
 ## What we learned
--MOTOKO
--React
--Chrome's API
--Webpack ( we ended up not using it though )
+- Motoko (and the Internet Computer)
+- React
+- Chrome's Extension API
+- Webpack (though we ended up not using it)
+
 ## What's next for Ethical Targeting
+- Finalize multi-profile support
 - Add a way to disable tracking for a certain period of time, instead of having to reactivate it each time
-- Add a blacklist of websites where your activity won't get tracked
+- Add a blocklist of websites where your activity won't get tracked
 - Add monetization
 - Make the weight of the interests appear in the user's profile
+- Finish developing the ad management console (including login system)
 
-
-## How to use 
-(Chrome Extension For The Normal Users)
-- Download the extension from this link: https://drive.google.com/drive/folders/1lPfLX10Vrya3uXlR1XFMaWpgWYbf2-rs?usp=sharing
-- Unzip it
-- drag into the chrome extension' tab
-- Enjoy!
-(DFINITY Backend for the ad-owners)
-- https://glz5x-riaaa-aaaab-aa6bq-cai.ic0.app/
-
-## Contributions
+## Contributors
 * [Larkin Smith](https://github.com/larkinds)
 * [Ali Doggaz](https://github.com/Ali-Doggaz)
 * [Prabal Chhatkuli](https://github.com/prabalchhatkuli)
 * [James Martindale](http://github.com)
 
-### Ethical Targeting Dfinity backend
-[Dfnity backend repo](https://github.com/jkmartindale/ethical_targeting-backend)
+### Ethical Targeting backend service
+[@jkmartindale/ethical_targeting-backend](https://github.com/jkmartindale/ethical_targeting-backend)
