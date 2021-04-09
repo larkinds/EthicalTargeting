@@ -1,25 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "name": "Ethical Targeting",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Most data collection of Internet user behavior ultimately comes from advertising's desire for **audience targeting and campaign analytics**. Constant exposés in the news and the gradual rollout of data privacy regulations are not enough to fight this **technological arms race**. Pandora's box has been opened and advertisers will not back down from having access to targeting and analytics. Ethical Targeting recognizes this reality and compromises by **moving ad targeting to the browser**. Browsers pull from a public ledger of ads and match ads with locally stored user profiles that **never touch the Internet**. ",
+  "permissions": ["storage", "activeTab", "scripting", "tabs","notifications","http://*/", "https://*/","alarms"],
+  "icons": {
+      "512": "logo.png"
+  },
+  "browser_action": {
+      "default_icon": "logo.png",
+      "default_popup": "popup1.html"
+  },
+  "background": {
+    "scripts": ["./backgroundCrawler.js"],
+    "persistent": false
+  },
+  "options_page": "options.html"
 }
