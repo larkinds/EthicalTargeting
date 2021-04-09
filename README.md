@@ -53,11 +53,14 @@ The DFINITY backend is connected to our [Chrome Extension](), that takes care of
 - Make the weight of the interests appear in the user's profile
 
 
-## How to use
-- Download the extension from this link: https://www.file.io/download/NIghuGalUpwL
+## How to use 
+(Chrome Extension For The Normal Users)
+- Download the extension from this link: https://drive.google.com/drive/folders/1lPfLX10Vrya3uXlR1XFMaWpgWYbf2-rs?usp=sharing
 - Unzip it
 - drag into the chrome extension' tab
 - Enjoy!
+(DFINITY Backend for the ad-owners)
+- https://glz5x-riaaa-aaaab-aa6bq-cai.ic0.app/
 
 ## Contributions
 * [Larkin Smith](https://github.com/larkinds)
