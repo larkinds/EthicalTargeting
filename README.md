@@ -35,10 +35,11 @@ The DFINITY backend is connected to our [Chrome Extension](), that takes care of
 -Chrome's API
 -Webpack ( we ended up not using it though )
 ## What's next for Ethical Targeting
-[ ] Add a way to disable tracking for a certain period of time, instead of having to reactivate it each time
-[ ] Add a blacklist of websites where your activity won't get tracked
-[ ] Add monetization
-[ ] Make the weight of the interests appear in the user's profile
+- Add a way to disable tracking for a certain period of time, instead of having to reactivate it each time
+- Add a blacklist of websites where your activity won't get tracked
+- Add monetization
+- Make the weight of the interests appear in the user's profile
+
 
 ## How to use
 1- Download the extension from this link: https://www.file.io/download/NIghuGalUpwL
